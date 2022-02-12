@@ -2,21 +2,27 @@ package com.hexad.librarymanagment.service;
 
 import com.hexad.librarymanagment.exception.BookNotFoundException;
 import com.hexad.librarymanagment.model.Book;
-import org.springframework.http.HttpStatus;
+import com.hexad.librarymanagment.repository.BookRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Service
 public class LibraryService {
+    private final BookRepository bookRepository;
+
+    public LibraryService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     public Book getBook(int bookId) {
-
-        return null;
+        Book book = bookRepository.findById(bookId);
+        if(book == null)
+            throw new BookNotFoundException("Book with id "+bookId+" is not present for now");
+        return book;
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void bookNotFoundHandler(BookNotFoundException exception){
+    private void bookNotFoundExceptionHandler(BookNotFoundException exception){
+
     }
 }

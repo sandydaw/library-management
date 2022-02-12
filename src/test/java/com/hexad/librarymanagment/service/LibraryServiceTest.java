@@ -1,41 +1,43 @@
 package com.hexad.librarymanagment.service;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import com.hexad.librarymanagment.exception.BookNotFoundException;
+import com.hexad.librarymanagment.model.Book;
+import com.hexad.librarymanagment.repository.BookRepository;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.annotation.security.RunAs;
-
-import java.awt.print.Book;
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-@ExtendWith(SpringExtension.class)
-class LibraryServiceTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+public class LibraryServiceTest {
 
-    @MockBean
     private LibraryService libraryService;
+    @Mock
+    private BookRepository bookRepository;
 
-    @BeforeEach
-    void setUp() {
 
+    @Before
+    public void setUp() {
+        libraryService = new LibraryService(bookRepository);
     }
 
     @Test
-    public void should_list_books() {
+    public void getBook_shouldReturnBook(){
+        given(bookRepository.findById(anyInt())).willReturn(new Book(199, "Thoughts on pakistan", "Oxford publication"));
+        Book book=libraryService.getBook(199);
+        assertTrue(book.getName().equalsIgnoreCase("Thoughts on pakistan"));
+        assertTrue(book.getPublisher().equalsIgnoreCase("Oxford publication"));
+
     }
 
+    @Test(expected = BookNotFoundException.class)
+    public void getBook_shouldThrowException(){
+        given(bookRepository.findById(anyInt())).willReturn(null);
+        libraryService.getBook(999999);
+    }
 }
