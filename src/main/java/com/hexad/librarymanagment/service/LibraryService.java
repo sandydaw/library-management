@@ -15,7 +15,7 @@ public class LibraryService {
     }
 
     public Book getBook(int bookId) {
-        Book book = bookRepository.findById(bookId);
+        Book book = bookRepository.findByBookId(bookId);
         if(book == null)
             throw new BookNotFoundException("Book with id "+bookId+" is not present for now");
         return book;
