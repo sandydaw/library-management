@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Book {
     @Id
-    private int bookId;
+    private Integer bookId;
     private String name;
     private String publisher;
 }

@@ -28,7 +28,7 @@ public class LibraryServiceTest {
 
     @Test
     public void getBook_shouldReturnBook(){
-        given(bookRepository.findById(anyInt())).willReturn(new Book(199, "Thoughts on pakistan", "Oxford publication"));
+        given(bookRepository.findByBookId(anyInt())).willReturn(new Book(199, "Thoughts on pakistan", "Oxford publication"));
         Book book=libraryService.getBook(199);
         assertTrue(book.getName().equalsIgnoreCase("Thoughts on pakistan"));
         assertTrue(book.getPublisher().equalsIgnoreCase("Oxford publication"));
