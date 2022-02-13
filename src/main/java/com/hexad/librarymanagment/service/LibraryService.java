@@ -6,6 +6,8 @@ import com.hexad.librarymanagment.repository.BookRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.util.List;
+
 @Service
 public class LibraryService {
     private final BookRepository bookRepository;
@@ -24,5 +26,9 @@ public class LibraryService {
     @ExceptionHandler
     private void bookNotFoundExceptionHandler(BookNotFoundException exception){
 
+    }
+
+    public List<Book>  findAllBooks() {
+        return null;
     }
 }
