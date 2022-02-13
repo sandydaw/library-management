@@ -3,6 +3,7 @@ package com.hexad.librarymanagment.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,4 +17,6 @@ public class Book {
     private Integer bookId;
     private String name;
     private String publisher;
+    @NonNull
+    private Integer noOfCopies;
 }

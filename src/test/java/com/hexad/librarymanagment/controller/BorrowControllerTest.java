@@ -32,7 +32,7 @@ class BorrowControllerTest {
 
     @Test
     public void borrowBook_shouldAddBookInBorrowList() throws Exception {
-        given(borrowBookService.borrowBook(100,1)).willReturn(new User(1,"test user1", Arrays.asList(new Book(100,"test book title2","test publication2"),new Book(200,"test book title2","test publication2"))));
+        given(borrowBookService.borrowBook(100,1)).willReturn(new User(1,"test user1", Arrays.asList(new Book(100,"test book title2","test publication2",2),new Book(200,"test book title2","test publication2",1))));
         mockMvc.perform(MockMvcRequestBuilders.get("/borrowbooks/100")).
                 andExpect(status().isOk()).
                 andExpect(jsonPath("userId").value(1)).

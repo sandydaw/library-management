@@ -32,7 +32,7 @@ public class LibraryControllerTest {
 
     @Test
     public void getBook_shouldReturnBook() throws Exception {
-        given(libraryService.getBook(anyInt())).willReturn(new Book(100, "ambedkar", "publisher1"));
+        given(libraryService.getBook(anyInt())).willReturn(new Book(100, "ambedkar", "publisher1",1));
         mockMvc.perform(MockMvcRequestBuilders.get("/books/100")).
                 andExpect(status().isOk()).
                 andExpect(jsonPath("name").value("ambedkar")).
@@ -48,8 +48,8 @@ public class LibraryControllerTest {
 
     @Test
     public void getAllBooks_shouldReturnListOfBooks() throws Exception {
-        given(libraryService.findAllBooks()).willReturn(Arrays.asList(new Book(100,"somename","publisher"),
-                new Book(200,"book name2","some publisher")));
+        given(libraryService.findAllBooks()).willReturn(Arrays.asList(new Book(100,"somename","publisher",1),
+                new Book(200,"book name2","some publisher",1)));
         mockMvc.perform(MockMvcRequestBuilders.get("/books/")).
                 andExpect(jsonPath("$[0].name").value("somename")).
                 andExpect(jsonPath("$[1].publisher").value("some publisher"));
