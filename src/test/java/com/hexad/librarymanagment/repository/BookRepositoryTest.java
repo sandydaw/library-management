@@ -22,9 +22,8 @@ class BookRepositoryTest {
     private TestEntityManager testEntityManager;
 
     @Test
-    public void findById_shouldRetunBook()
-    {
-        Book savedBook = testEntityManager.persistAndFlush(new Book(100,"God of small things", "Oxford publications"));
+    public void findByBookId_shouldRetunBook()
+    {Book savedBook = testEntityManager.persistAndFlush(new Book(100,"God of small things","Arundhati Roy", "Oxford publications",1));
         Book book = bookRepository.findByBookId(100);
         assertTrue(book.getName().equalsIgnoreCase(savedBook.getName()));
         assertTrue(book.getPublisher().equalsIgnoreCase(savedBook.getPublisher()));
