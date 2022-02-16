@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 
@@ -28,9 +28,9 @@ public class LibraryServiceTest {
 
     @Test
     public void getBook_shouldReturnBook(){
-        given(bookRepository.findByBookId(anyInt())).willReturn(new Book(199, "Thoughts on pakistan", "Oxford publication",1));
+        given(bookRepository.findByBookId(anyInt())).willReturn(new Book(199, "Test book name ","Test author name", "Oxford publication",1));
         Book book=libraryService.getBook(199);
-        assertTrue(book.getName().equalsIgnoreCase("Thoughts on pakistan"));
+        assertTrue(book.getName().equalsIgnoreCase("Test book name "));
         assertTrue(book.getPublisher().equalsIgnoreCase("Oxford publication"));
 
     }

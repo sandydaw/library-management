@@ -3,6 +3,8 @@ package com.hexad.librarymanagment.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,8 +17,9 @@ import java.util.List;
 @Entity
 public class User {
     @Id
-    private int userId;
+    private Integer userId;
     private String name;
     @OneToMany
+    @Cascade(CascadeType.ALL)
     private List<Book> borrowBookList;
 }

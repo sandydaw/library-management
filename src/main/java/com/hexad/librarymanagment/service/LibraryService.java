@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class LibraryService {
+
     private final BookRepository bookRepository;
 
     public LibraryService(BookRepository bookRepository) {

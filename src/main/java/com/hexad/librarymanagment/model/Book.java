@@ -16,6 +16,7 @@ public class Book {
     @Id
     private Integer bookId;
     private String name;
+    private String author;
     private String publisher;
     @NonNull
     private Integer noOfCopies;

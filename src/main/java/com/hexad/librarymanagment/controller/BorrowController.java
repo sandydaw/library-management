@@ -9,15 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/borrowbooks/")
+@RequestMapping(path = "/borrowbooks")
 public class BorrowController {
 
     @Autowired
     private BorrowBookService borrowBookService;
 
     @GetMapping(path = "/{userId}/{bookid}")
-    public User borrowBook(@PathVariable Integer userId,@PathVariable Integer bookid){
-        return borrowBookService.borrowBook(userId,bookid);
+    public User borrowBook(@PathVariable Integer userId, @PathVariable Integer bookid) {
+        return borrowBookService.borrowBook(userId, bookid);
     }
-
 }

@@ -2,8 +2,10 @@ package com.hexad.librarymanagment.repository;
 
 import com.hexad.librarymanagment.model.User;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface BorrowRepository extends CrudRepository<User, Integer> {
+@Repository
+public interface UserRepository extends CrudRepository<User, Integer> {
     User findByUserId(Integer userId);
 }
 

@@ -3,7 +3,7 @@ package com.hexad.librarymanagment.controller;
 import com.hexad.librarymanagment.model.Book;
 import com.hexad.librarymanagment.model.User;
 import com.hexad.librarymanagment.service.BorrowBookService;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -23,19 +23,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest
 @ContextConfiguration(classes = BorrowController.class)
-class BorrowControllerTest {
+public class BorrowControllerTest {
 
     @MockBean
     private BorrowBookService borrowBookService;
+
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void borrowBook_shouldAddBookInBorrowList() throws Exception {
-        given(borrowBookService.borrowBook(100,1)).willReturn(new User(1,"test user1", Arrays.asList(new Book(100,"test book title2","test publication2",2),new Book(200,"test book title2","test publication2",1))));
-        mockMvc.perform(MockMvcRequestBuilders.get("/borrowbooks/100")).
+
+        given(borrowBookService.borrowBook(100,1)).willReturn(new User(100,"test user1", Arrays.asList(new Book(1,"test book title2","Test author","test publication2",2),new Book(2,"test book title2","Test author","test publication2",1))));
+        mockMvc.perform(MockMvcRequestBuilders.get("/borrowbooks/100/1")).
                 andExpect(status().isOk()).
-                andExpect(jsonPath("userId").value(1)).
+                andExpect(jsonPath("userId").value(100)).
                 andExpect(jsonPath("name").value("test user1")).
                 andExpect(jsonPath("$.borrowBookList[0].name").value("test book title2"));
     }
