@@ -3,6 +3,7 @@ package com.hexad.librarymanagment.service;
 import com.hexad.librarymanagment.exception.BookNotFoundException;
 import com.hexad.librarymanagment.model.Book;
 import com.hexad.librarymanagment.repository.BookRepository;
+import com.hexad.librarymanagment.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,11 +20,13 @@ public class LibraryServiceTest {
     private LibraryService libraryService;
     @Mock
     private BookRepository bookRepository;
+    @Mock
+    private UserRepository userRepository;
 
 
     @Before
     public void setUp() {
-        libraryService = new LibraryService(bookRepository);
+        libraryService = new LibraryService(userRepository, bookRepository);
     }
 
     @Test

@@ -43,7 +43,7 @@ public class ReturnBookControllerTest {
     public void returnBook_shouldDecreamentBookFromBorrowList() throws Exception {
         borrowBookList.add(new Book(RETURN_BOOK_ID,"TestBookName1","Test Auther name","TestBookPublication",3));
         given(returnBookService.returnBook(USER_ID,RETURN_BOOK_ID)).willReturn(new User(USER_ID,"TestUserName",borrowBookList));
-        mockMvc.perform(MockMvcRequestBuilders.put("/returnbook/"+USER_ID+"/"+RETURN_BOOK_ID)).
+        mockMvc.perform(MockMvcRequestBuilders.put("/library/returnbook/"+USER_ID+"/"+RETURN_BOOK_ID)).
                 andExpect(status().isOk());
     }
 

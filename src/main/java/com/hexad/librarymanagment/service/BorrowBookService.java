@@ -16,11 +16,9 @@ import java.util.List;
 @Service
 public class BorrowBookService {
 
-    private UserRepository userRepository;
-    private BookRepository bookRepository;
+    private final UserRepository userRepository;
+    private final BookRepository bookRepository;
 
-    public BorrowBookService() {
-    }
 
     public BorrowBookService(BookRepository bookRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;

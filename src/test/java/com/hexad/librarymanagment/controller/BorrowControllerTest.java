@@ -13,17 +13,19 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
 @ContextConfiguration(classes = BorrowController.class)
 public class BorrowControllerTest {
+
+    private static final Integer BOOK_ID = 1;
+    private static final Integer USER_ID = 100;
 
     @MockBean
     private BorrowBookService borrowBookService;
@@ -33,13 +35,9 @@ public class BorrowControllerTest {
 
     @Test
     public void borrowBook_shouldAddBookInBorrowList() throws Exception {
-
-        given(borrowBookService.borrowBook(100,1)).willReturn(new User(100,"test user1", Arrays.asList(new Book(1,"test book title2","Test author","test publication2",2),new Book(2,"test book title2","Test author","test publication2",1))));
-        mockMvc.perform(MockMvcRequestBuilders.get("/borrowbooks/100/1")).
-                andExpect(status().isOk()).
-                andExpect(jsonPath("userId").value(100)).
-                andExpect(jsonPath("name").value("test user1")).
-                andExpect(jsonPath("$.borrowBookList[0].name").value("test book title2"));
+        given(borrowBookService.borrowBook(USER_ID,BOOK_ID)).willReturn(new User(USER_ID,"Test User",new ArrayList<>()));
+        mockMvc.perform(MockMvcRequestBuilders.put("/library/borrowbooks/"+USER_ID+"/"+BOOK_ID)).
+                andExpect(status().isOk());
     }
 
 }
