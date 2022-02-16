@@ -1,5 +1,6 @@
 package com.hexad.librarymanagment.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +20,6 @@ public class Book {
     private String author;
     private String publisher;
     @NonNull
+    @ApiModelProperty(hidden = true)
     private Integer noOfCopies;
 }

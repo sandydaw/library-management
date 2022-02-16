@@ -1,5 +1,6 @@
 package com.hexad.librarymanagment.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class User {
     private Integer userId;
     private String name;
     @OneToMany
-    @Cascade(CascadeType.ALL)
+    @Cascade({CascadeType.ALL})
+    @ApiModelProperty(hidden = true)
     private List<Book> borrowBookList;
 }

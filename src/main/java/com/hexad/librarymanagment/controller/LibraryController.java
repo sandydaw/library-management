@@ -26,6 +26,7 @@ public class LibraryController {
         return libraryService.saveBook(book);
     }
 
+
     @PutMapping(path = "/saveuser")
     public User saveUser(@RequestBody User user) {
         return libraryService.saveUser(user);
@@ -36,6 +37,11 @@ public class LibraryController {
         return libraryService.getAllBooks();
     }
 
+
+    @GetMapping(path = "/users/{userId}")
+    public User getUser(@PathVariable Integer userId) {
+        return libraryService.getUserById(userId);
+    }
     @GetMapping(path = "/users")
     public List<User> getAllUsers() {
         return libraryService.getAllUsers();

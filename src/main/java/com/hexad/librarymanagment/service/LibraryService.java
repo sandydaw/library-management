@@ -40,15 +40,19 @@ public class LibraryService {
         return savedUser;
     }
 
-    @ExceptionHandler
-    private void bookNotFoundExceptionHandler(BookNotFoundException exception) {
-    }
-
     public List<Book> getAllBooks() {
         return (List<Book>) bookRepository.findAll();
     }
 
     public List<User> getAllUsers() {
         return (List<User>) userRepository.findAll();
+    }
+
+    public User getUserById(Integer userId) {
+        return userRepository.findByUserId(userId);
+    }
+
+    @ExceptionHandler
+    private void bookNotFoundExceptionHandler(BookNotFoundException exception) {
     }
 }

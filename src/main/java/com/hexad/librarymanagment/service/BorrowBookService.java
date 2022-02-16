@@ -37,6 +37,7 @@ public class BorrowBookService {
                 }
                 bookRepository.save(book);
                 borrowedBooks.add(book);
+                userRepository.save(user);
             } else {
                 throw new UserBorrowLimitException("You have exceeded borrowing limit! Can not borrow more than two books");
             }
