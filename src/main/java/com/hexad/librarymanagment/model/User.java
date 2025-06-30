@@ -20,10 +20,11 @@ import java.util.List;
 @Builder
 public class User {
     @Id
-    private Integer userId;
+    private String  userid;
     private String name;
     @OneToMany
     @Cascade({CascadeType.ALL})
     @ApiModelProperty(hidden = true)
     private List<Book> borrowBookList;
+    private List<Address> addressList;
 }
