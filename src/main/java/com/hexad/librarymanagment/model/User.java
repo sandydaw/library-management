@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Address;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -20,10 +21,11 @@ import java.util.List;
 @Builder
 public class User {
     @Id
-    private Integer userId;
+    private String userId;
     private String name;
     @OneToMany
     @Cascade({CascadeType.ALL})
     @ApiModelProperty(hidden = true)
     private List<Book> borrowBookList;
+    private List<Address> addressList;
 }
