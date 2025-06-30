@@ -25,5 +25,7 @@ public class User {
     @Cascade({CascadeType.ALL})
     @ApiModelProperty(hidden = true)
     private List<Book> borrowBookList;
+
     private List<Address> addressesList;
+
 }
