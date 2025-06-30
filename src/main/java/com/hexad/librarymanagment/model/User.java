@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 public class User {
     @Id
-    private String  userId;
+    private int  userId;
     private String name;
     @OneToMany
     @Cascade({CascadeType.ALL})
