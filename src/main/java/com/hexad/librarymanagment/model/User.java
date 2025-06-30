@@ -17,6 +17,7 @@ import java.util.List;
 @Data
 @Api
 @AllArgsConstructor
+@Entity
 @Builder
 public class User {
     @Id
@@ -26,5 +27,6 @@ public class User {
     @Cascade({CascadeType.ALL})
     @ApiModelProperty(hidden = true)
     private List<Book> borrowBookList;
-    private List<Address> addressLists;
+
+    private List<Address> addressList;
 }
