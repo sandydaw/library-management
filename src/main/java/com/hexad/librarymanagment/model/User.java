@@ -19,11 +19,13 @@ import java.util.List;
 @Builder
 public class User {
     @Id
-    private String  userid;
+    private int  userId;
     private String name;
     @OneToMany
     @Cascade({CascadeType.ALL})
     @ApiModelProperty(hidden = true)
     private List<Book> borrowBookList;
-    private List<Address> addresses;
+
+    private List<Address> addressesList;
+
 }
