@@ -28,13 +28,10 @@ public class BorrowBookService {
     public User borrowBook(Integer userId, Integer bookId) {
         User user = userRepository.findByUserId(userId);
         if (user != null) {
-            List<Book> borrowedBooks = user.getBorrowBookList();
+            List<Book> borrowedBooks = user.getClass().;
             if (borrowedBooks.size() < LibraryMgmtConstant.MAX_BORROW_BOOK_SIZE) {
                 Book book = bookRepository.findByBookId(bookId);
                 LibraryUtility.updateNoOFCopiesAfterBorrowed(book);
-                if (book.getNoOfCopies() < 0) {
-                    throw new BookNotFoundException("Book is not present in the Library");
-                }
                 bookRepository.save(book);
                 borrowedBooks.add(book);
                 userRepository.save(user);
