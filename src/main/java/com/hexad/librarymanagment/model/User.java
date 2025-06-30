@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Builder
@@ -26,5 +25,5 @@ public class User {
     @Cascade({CascadeType.ALL})
     @ApiModelProperty(hidden = true)
     private List<Book> borrowBookList;
-    private List<Address> addressList;
+    private List<Address> addresesList;
 }
